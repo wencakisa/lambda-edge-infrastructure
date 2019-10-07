@@ -17,7 +17,7 @@ variable "lambda_prefix" {
 
 variable "node_runtime_version" {
   type        = string
-  default     = "nodejs8.10" # Lambda@Edge limitation
+  default     = "nodejs10.x" # Lambda@Edge limitation
   description = "The required Node.js version for Lambda functions"
 }
 
@@ -27,20 +27,14 @@ variable "default_handler" {
   description = "The default handler of Lambda functions"
 }
 
-variable "viewer_request_path" {
-  type        = string
-  default     = "${path.module}/../src/viewer-request-function"
-  description = "Path of the viewer-request function"
-}
-
-variable "origin_response_path" {
-  type        = string
-  default     = "${path.module}/../src/origin-response-function"
-  description = "Path of the origin-response function"
-}
-
 variable "s3_origin_id" {
   type        = string
   default     = "default-s3-bucket-origin"
   description = "The unique identifier of Cloudfront S3 Bucket origin"
 }
+
+# variable "acm_certificate_arn" {
+#   type        = string
+#   default     = "arn:aws:acm:us-east-1:010663874085:certificate/39c0d094-616c-4b80-9f5f-47ecf7cbd9da"
+#   description = "SSL certificate ARN from ACM"
+# }
