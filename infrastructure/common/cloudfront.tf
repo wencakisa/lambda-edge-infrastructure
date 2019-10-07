@@ -7,14 +7,13 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
       http_port              = 80
       https_port             = 443
       origin_protocol_policy = "http-only"
-      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+      origin_ssl_protocols   = ["TLSv1.1"]
     }
   }
 
-  enabled             = true
-  is_ipv6_enabled     = true
-  comment             = "Image resize Lambda@Edge mechanism"
-  default_root_object = "index.html"
+  enabled         = true
+  is_ipv6_enabled = true
+  comment         = "Image resize Lambda@Edge mechanism"
 
   # Disable the distribution instead of deleting it (when `terraform destroy` is fired)
   retain_on_delete = true
@@ -28,8 +27,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     target_origin_id = var.s3_origin_id
 
     viewer_protocol_policy = "allow-all"
-    min_ttl                = 0
+    compress               = true
     default_ttl            = 0
+    min_ttl                = 100
     max_ttl                = 31536000
 
     forwarded_values {
