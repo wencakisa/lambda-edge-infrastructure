@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     max_ttl                = 31536000
 
     forwarded_values {
-      query_string = true
+      query_string            = true
       query_string_cache_keys = ["d"]
 
       cookies {
