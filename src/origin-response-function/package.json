@@ -8,9 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "aws-sdk": "^2.543.0",
-    "json-loader": "^0.5.7",
+  "devDependencies": {
+    "aws-sdk": "^2.544.0",
+    "querystring": "^0.2.0",
     "sharp": "^0.23.1"
   }
 }
