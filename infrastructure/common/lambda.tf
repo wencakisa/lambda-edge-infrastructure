@@ -1,7 +1,7 @@
 # Viewer-request
 data "archive_file" "viewer_request_lambda_zip" {
   type        = "zip"
-  source_dir  = local.viewer_request_path
+  source_file = "${local.viewer_request_path}/index.js"
   output_path = "${local.viewer_request_path}/lambda.zip"
 }
 
@@ -28,4 +28,6 @@ resource "aws_lambda_function" "origin_response" {
   runtime       = var.node_runtime_version
   publish       = true
   role          = aws_iam_role.lambda_edge_role.arn
+  memory_size   = 3008
+  timeout       = 30
 }
